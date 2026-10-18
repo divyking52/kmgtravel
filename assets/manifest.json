@@ -1,0 +1,219 @@
+{
+  "assets": {
+    "logo": "assets/logo.png",
+    "hero": "assets/photos/hero.jpg",
+    "stlucia": "assets/photos/stlucia.jpg",
+    "cancun": "assets/photos/cancun.jpg",
+    "grenada": "assets/photos/grenada.jpg",
+    "barbados": "assets/photos/barbados.jpg",
+    "jamaica": "assets/photos/jamaica.jpg",
+    "puertorico": "assets/photos/puertorico.jpg",
+    "cozumel": "assets/photos/cozumel.jpg",
+    "trinidad": "assets/photos/trinidad.jpg",
+    "concierge": "assets/photos/concierge.jpg",
+    "svcFlights": "assets/photos/svc-flights.jpg",
+    "svcStay": "assets/photos/svc-stay.jpg",
+    "svcSelf": "assets/photos/svc-self.jpg",
+    "svcVacation": "assets/photos/cancun.jpg",
+    "svcCruise": "assets/photos/svc-cruise.jpg",
+    "svcHoneymoon": "assets/photos/svc-honeymoon.jpg",
+    "svcInsurance": "assets/photos/svc-insurance.jpg",
+    "svcTours": "assets/photos/stlucia.jpg",
+    "svcTransfers": "assets/photos/concierge.jpg",
+    "badgeTrue": "assets/badges/true-ccra.png",
+    "badgeTravefy": "assets/badges/travefy.png",
+    "badgeTravefyAdv": "assets/badges/travefy-advanced.png",
+    "badgeClia": "assets/badges/clia.png",
+    "badgeStLucia": "assets/badges/st-lucia-expert.png",
+    "badgeGrenada": "assets/badges/grenada-expert.png",
+    "badgePuertoRico": "assets/badges/puerto-rico.png"
+  },
+  "results": [
+    {
+      "key": "logo",
+      "path": "assets/logo.png",
+      "status": "ok",
+      "bytes": 19113,
+      "ctype": "image/png"
+    },
+    {
+      "key": "hero",
+      "path": "assets/photos/hero.jpg",
+      "status": "ok",
+      "bytes": 135202,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "stlucia",
+      "path": "assets/photos/stlucia.jpg",
+      "status": "ok",
+      "bytes": 251775,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "cancun",
+      "path": "assets/photos/cancun.jpg",
+      "status": "ok",
+      "bytes": 228393,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "grenada",
+      "path": "assets/photos/grenada.jpg",
+      "status": "ok",
+      "bytes": 295730,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "barbados",
+      "path": "assets/photos/barbados.jpg",
+      "status": "ok",
+      "bytes": 314916,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "jamaica",
+      "path": "assets/photos/jamaica.jpg",
+      "status": "ok",
+      "bytes": 558215,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "puertorico",
+      "path": "assets/photos/puertorico.jpg",
+      "status": "ok",
+      "bytes": 710318,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "cozumel",
+      "path": "assets/photos/cozumel.jpg",
+      "status": "ok",
+      "bytes": 546005,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "trinidad",
+      "path": "assets/photos/trinidad.jpg",
+      "status": "ok",
+      "bytes": 507701,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "concierge",
+      "path": "assets/photos/concierge.jpg",
+      "status": "ok",
+      "bytes": 280598,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcFlights",
+      "path": "assets/photos/svc-flights.jpg",
+      "status": "ok",
+      "bytes": 265226,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcStay",
+      "path": "assets/photos/svc-stay.jpg",
+      "status": "ok",
+      "bytes": 691907,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcSelf",
+      "path": "assets/photos/svc-self.jpg",
+      "status": "ok",
+      "bytes": 872335,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcVacation",
+      "path": "assets/photos/cancun.jpg",
+      "status": "shared",
+      "bytes": 228393
+    },
+    {
+      "key": "svcCruise",
+      "path": "assets/photos/svc-cruise.jpg",
+      "status": "ok",
+      "bytes": 464660,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcHoneymoon",
+      "path": "assets/photos/svc-honeymoon.jpg",
+      "status": "ok",
+      "bytes": 605045,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcInsurance",
+      "path": "assets/photos/svc-insurance.jpg",
+      "status": "ok",
+      "bytes": 695207,
+      "ctype": "image/jpeg"
+    },
+    {
+      "key": "svcTours",
+      "path": "assets/photos/stlucia.jpg",
+      "status": "shared",
+      "bytes": 251775
+    },
+    {
+      "key": "svcTransfers",
+      "path": "assets/photos/concierge.jpg",
+      "status": "shared",
+      "bytes": 280598
+    },
+    {
+      "key": "badgeTrue",
+      "path": "assets/badges/true-ccra.png",
+      "status": "ok",
+      "bytes": 6524,
+      "ctype": "image/png"
+    },
+    {
+      "key": "badgeTravefy",
+      "path": "assets/badges/travefy.png",
+      "status": "ok",
+      "bytes": 14463,
+      "ctype": "image/png"
+    },
+    {
+      "key": "badgeTravefyAdv",
+      "path": "assets/badges/travefy-advanced.png",
+      "status": "ok",
+      "bytes": 9875,
+      "ctype": "image/png"
+    },
+    {
+      "key": "badgeClia",
+      "path": "assets/badges/clia.png",
+      "status": "ok",
+      "bytes": 16893,
+      "ctype": "image/png"
+    },
+    {
+      "key": "badgeStLucia",
+      "path": "assets/badges/st-lucia-expert.png",
+      "status": "ok",
+      "bytes": 13563,
+      "ctype": "image/png"
+    },
+    {
+      "key": "badgeGrenada",
+      "path": "assets/badges/grenada-expert.png",
+      "status": "ok",
+      "bytes": 16624,
+      "ctype": "image/png"
+    },
+    {
+      "key": "badgePuertoRico",
+      "path": "assets/badges/puerto-rico.png",
+      "status": "ok",
+      "bytes": 18481,
+      "ctype": "image/png"
+    }
+  ]
+}

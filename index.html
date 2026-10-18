@@ -1,0 +1,3455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KMG Tours &amp; Travel — CCRA-accredited Caribbean &amp; Mexico specialists. All-Inclusive Group Travel, Destination Weddings, Honeymoons &amp; Custom FIT. Couva, Trinidad.">
+  <title>KMG Tours &amp; Travel | Caribbean &amp; Mexico Specialists</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;family=JetBrains+Mono:wght@400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-sand: #F6F3EC;
+      --bg-midnight: #0A181D;
+      --bg-card-dark: #11252C;
+      --text-ink: #122024;
+      --text-cream: #F6F3EC;
+      --accent-terracotta: #D46A4E;
+      --accent-emerald: #1B4D3E;
+      --accent-gold: #C8A97E;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-h: 72px;
+      --cursor-size: 12px;
+      --cursor-ring: 40px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-sand);
+      color: var(--text-ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.6s var(--ease-out), color 0.6s var(--ease-out);
+      cursor: none;
+    }
+
+    body.is-dark {
+      background: var(--bg-midnight);
+      color: var(--text-cream);
+    }
+
+    body.is-dark .nav {
+      background: rgba(10, 24, 29, 0.72);
+      border-bottom-color: rgba(246, 243, 236, 0.08);
+    }
+
+    body.is-dark .nav-brand,
+    body.is-dark .nav-links a { color: var(--text-cream); }
+
+    body.is-dark .nav-links a:hover { color: var(--accent-gold); }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; border: none; background: none; cursor: none; }
+    ul { list-style: none; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ——— Cursor ——— */
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 10000;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      will-change: transform, width, height;
+    }
+
+    .cursor-dot {
+      width: var(--cursor-size);
+      height: var(--cursor-size);
+      background: var(--accent-terracotta);
+      mix-blend-mode: multiply;
+    }
+
+    .cursor-ring {
+      width: var(--cursor-ring);
+      height: var(--cursor-ring);
+      border: 1.5px solid var(--text-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out),
+                  background 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+    }
+
+    .cursor-ring .cursor-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0;
+      color: var(--text-cream);
+      transition: opacity 0.25s ease;
+      white-space: nowrap;
+    }
+
+    body.cursor-hover .cursor-ring {
+      width: 88px;
+      height: 88px;
+      background: var(--accent-terracotta);
+      border-color: transparent;
+    }
+
+    body.cursor-hover .cursor-ring .cursor-label { opacity: 1; }
+    body.cursor-hover .cursor-dot { opacity: 0; }
+
+    body.is-dark .cursor-ring { border-color: var(--text-cream); }
+    body.is-dark .cursor-dot { mix-blend-mode: normal; }
+
+    @media (hover: none), (pointer: coarse) {
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none !important; }
+    }
+
+    /* ——— Grain & Progress ——— */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0.035;
+      mix-blend-mode: multiply;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent-terracotta);
+      z-index: 9999;
+      transform-origin: left center;
+    }
+
+    /* ——— Preloader ——— */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      background: var(--bg-midnight);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-cream);
+    }
+
+    .preloader-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .preloader-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
+    }
+
+    .preloader-line {
+      width: 120px;
+      height: 1px;
+      background: rgba(246, 243, 236, 0.2);
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preloader-line::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-terracotta);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.1s linear;
+    }
+
+    /* ——— Navigation ——— */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+      background: rgba(246, 243, 236, 0.78);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid rgba(18, 32, 36, 0.06);
+      transform: translateY(-100%);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-ink);
+    }
+
+    .nav-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-emerald);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    body.is-dark .nav-badge {
+      color: var(--accent-gold);
+      border-color: rgba(200, 169, 126, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-ink);
+      opacity: 0.75;
+      transition: opacity 0.25s, color 0.25s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--accent-terracotta); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.25rem;
+      background: var(--accent-emerald);
+      color: var(--text-cream) !important;
+      opacity: 1 !important;
+      border-radius: 2px;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .nav-cta:hover { background: var(--accent-terracotta) !important; }
+
+    .nav-toggle {
+      display: none;
+      width: 36px;
+      height: 36px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-ink);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    body.is-dark .nav-toggle span { background: var(--text-cream); }
+
+    .nav-toggle.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    @media (max-width: 1024px) {
+      .nav-links {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        background: var(--bg-sand);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem 1.5rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid rgba(18, 32, 36, 0.08);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.45s var(--ease-out), opacity 0.35s;
+      }
+
+      body.is-dark .nav-links { background: var(--bg-midnight); }
+
+      .nav-links.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-toggle { display: flex; }
+    }
+
+    /* ——— Typography helpers ——— */
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-emerald);
+    }
+
+    body.is-dark .eyebrow { color: var(--accent-gold); }
+
+    .display {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 6.8rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .display em {
+      font-style: italic;
+      color: var(--accent-terracotta);
+    }
+
+    .body-lg {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 42rem;
+    }
+
+    .section-pad {
+      padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 4.5rem);
+    }
+
+    /* ——— Hero ——— */
+    .hero-wrap {
+      position: relative;
+      /* Tighter pin distance so scroll-back reverses sooner */
+      height: 170vh;
+    }
+
+    .hero-pin {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: calc(var(--nav-h) + clamp(1.25rem, 3vh, 2.5rem)) clamp(1.25rem, 5vw, 4rem) 1.5rem;
+      background: var(--bg-sand);
+    }
+
+    .hero-pattern {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      color: var(--accent-emerald);
+      opacity: 0.22;
+    }
+
+    .hero-pattern svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-pattern--left {
+      top: 18%;
+      left: clamp(0.5rem, 3vw, 2.5rem);
+      width: min(160px, 18vw);
+      height: min(220px, 28vh);
+    }
+
+    .hero-pattern--right {
+      top: 22%;
+      right: clamp(0.5rem, 3vw, 2.5rem);
+      width: min(140px, 16vw);
+      height: min(200px, 26vh);
+      color: var(--accent-terracotta);
+      opacity: 0.2;
+    }
+
+    .hero-pattern--dots {
+      position: relative;
+      left: auto;
+      bottom: auto;
+      transform: none;
+      width: min(420px, 78vw);
+      height: 36px;
+      margin: 0.15rem auto 0.85rem;
+      opacity: 0.22;
+      color: var(--accent-gold);
+      z-index: 6;
+      flex-shrink: 0;
+    }
+
+    .hero-copy {
+      text-align: center;
+      max-width: 860px;
+      width: 100%;
+      z-index: 6;
+      position: relative;
+      flex-shrink: 0;
+      padding: 0.5rem 1.25rem 1.75rem;
+      margin-bottom: 0.35rem;
+      background: var(--bg-sand);
+    }
+
+    .hero-copy .eyebrow {
+      margin-bottom: 0.9rem;
+      display: block;
+      color: var(--accent-emerald);
+    }
+
+    .hero-copy .display {
+      margin-bottom: 0.75rem;
+      color: var(--text-ink);
+      font-size: clamp(2.6rem, 6.5vw, 5.8rem);
+    }
+
+    .hero-copy .display em { color: var(--accent-terracotta); }
+
+    .hero-sub {
+      margin: 0 auto;
+      color: var(--text-ink);
+      opacity: 0.82;
+      font-weight: 400;
+      font-size: clamp(0.88rem, 1.3vw, 1.05rem);
+      line-height: 1.6;
+      max-width: 32rem;
+    }
+
+    .hero-portal {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      --clip-t: 58%;
+      --clip-r: 15%;
+      --clip-b: 4%;
+      --clip-l: 15%;
+      --clip-radius: 24px;
+      clip-path: inset(var(--clip-t) var(--clip-r) var(--clip-b) var(--clip-l) round var(--clip-radius));
+      will-change: clip-path;
+    }
+
+    @media (max-width: 768px) {
+      .hero-wrap { height: 155vh; }
+      .hero-pattern--left,
+      .hero-pattern--right { display: none; }
+      .hero-pattern--dots {
+        width: min(280px, 70vw);
+        height: 28px;
+        margin: 0.1rem auto 0.65rem;
+        opacity: 0.18;
+      }
+      .hero-portal {
+        --clip-t: 72%;
+        --clip-r: 4%;
+        --clip-b: 3%;
+        --clip-l: 4%;
+        --clip-radius: 16px;
+      }
+      .hero-portal-img {
+        width: 100%;
+        height: 100%;
+        transform: scale(1.08);
+      }
+      .hero-pin {
+        padding: calc(var(--nav-h) + 0.85rem) 1.1rem 1.25rem;
+      }
+      .hero-copy {
+        max-width: 100%;
+        padding: 0.15rem 0.15rem 0.85rem;
+      }
+      .hero-copy .display { font-size: clamp(2.15rem, 9vw, 2.85rem); }
+      .hero-copy .eyebrow {
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.65rem;
+      }
+      .hero-sub { font-size: 0.86rem; max-width: 28rem; line-height: 1.55; }
+      .hero-coord { display: none; }
+      .hero-glass {
+        bottom: 1.15rem;
+        padding: 0.55rem;
+        gap: 0;
+        max-width: calc(100% - 1.5rem);
+      }
+      .hero-glass-cta {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 0.75rem 1rem;
+      }
+    }
+
+    .hero-portal-img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      transform: scale(1.15);
+      will-change: transform;
+    }
+
+    .hero-portal-shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 24, 29, 0.6) 0%,
+        rgba(10, 24, 29, 0.2) 40%,
+        transparent 70%
+      );
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hero-glass {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 2.5rem);
+      padding: 1rem 1.5rem;
+      background: rgba(246, 243, 236, 0.14);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border: 1px solid rgba(246, 243, 236, 0.22);
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: calc(100% - 2rem);
+      overflow-x: auto;
+      /* xPercent / y driven by GSAP — avoid CSS transform fighting scrub reverse */
+    }
+
+    .hero-coord {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-cream);
+      opacity: 0.85;
+    }
+
+    .hero-coord + .hero-coord {
+      border-left: 1px solid rgba(246, 243, 236, 0.25);
+      padding-left: clamp(1rem, 3vw, 2.5rem);
+    }
+
+    .hero-glass-cta {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-cream);
+      padding: 0.55rem 1rem;
+      background: var(--accent-terracotta);
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ——— Service Desk ——— */
+    .svcdesk {
+      position: relative;
+      background: var(--bg-sand);
+      color: var(--text-ink);
+      overflow: hidden;
+    }
+
+    .svcdesk-shell {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .svcdesk-header {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      align-items: end;
+      margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+      padding-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+      border-bottom: 1px solid rgba(18, 32, 36, 0.12);
+    }
+
+    .svcdesk-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.4rem);
+      line-height: 0.95;
+      margin-top: 0.55rem;
+      max-width: 12ch;
+    }
+
+    .svcdesk-header h2 em {
+      font-style: italic;
+      color: var(--accent-terracotta);
+    }
+
+    .svcdesk-lead {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      opacity: 0.78;
+      max-width: 38ch;
+      padding-bottom: 0.2rem;
+    }
+
+    .svcdesk-board {
+      display: grid;
+      grid-template-columns: minmax(240px, 300px) 1fr;
+      gap: 1.15rem;
+      min-height: min(70vh, 600px);
+    }
+
+    .svcdesk-index {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      max-height: min(70vh, 600px);
+      overflow-y: auto;
+      padding-right: 0.35rem;
+      scrollbar-width: thin;
+    }
+
+    .svcdesk-item {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: 0.65rem;
+      align-items: baseline;
+      text-align: left;
+      width: 100%;
+      padding: 0.7rem 0.65rem;
+      border-bottom: 1px solid rgba(18, 32, 36, 0.08);
+      color: var(--text-ink);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .svcdesk-item:hover {
+      background: rgba(27, 77, 62, 0.05);
+    }
+
+    .svcdesk-item.is-active {
+      background: var(--bg-midnight);
+      color: var(--text-cream);
+      border-bottom-color: transparent;
+    }
+
+    .svcdesk-item-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-emerald);
+      padding-top: 0.2rem;
+    }
+
+    .svcdesk-item.is-active .svcdesk-item-num {
+      color: var(--accent-gold);
+    }
+
+    .svcdesk-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .svcdesk-stage {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-midnight);
+      min-height: min(70vh, 600px);
+    }
+
+    .svcdesk-stage-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 0.65s var(--ease-out), transform 1.1s var(--ease-out);
+    }
+
+    .svcdesk-stage-img.is-active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 1;
+    }
+
+    .svcdesk-stage-shade {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(90deg, rgba(10, 24, 29, 0.15) 0%, transparent 40%),
+        linear-gradient(to top, rgba(10, 24, 29, 0.92) 0%, rgba(10, 24, 29, 0.35) 42%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .svcdesk-panel {
+      position: absolute;
+      left: 1.15rem;
+      right: 1.15rem;
+      bottom: 1.15rem;
+      z-index: 3;
+      max-width: 520px;
+      padding: 1.35rem 1.4rem 1.4rem;
+      background: rgba(10, 24, 29, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(246, 243, 236, 0.12);
+      color: var(--text-cream);
+    }
+
+    .svcdesk-panel-index {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .svcdesk-panel h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+    }
+
+    .svcdesk-panel p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.6;
+      opacity: 0.88;
+      margin-bottom: 0.9rem;
+    }
+
+    .svcdesk-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .svcdesk-points span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.55rem;
+      border: 1px solid rgba(246, 243, 236, 0.22);
+      color: rgba(246, 243, 236, 0.85);
+    }
+
+    .svcdesk-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .svcdesk-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--text-cream);
+      padding: 0.7rem 1.1rem;
+      background: var(--accent-terracotta);
+      transition: background 0.3s;
+    }
+
+    .svcdesk-cta:hover { background: var(--accent-emerald); }
+
+    .svcdesk-nav {
+      display: inline-flex;
+      gap: 0.45rem;
+    }
+
+    .svcdesk-nav button {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(246, 243, 236, 0.28);
+      border-radius: 50%;
+      color: var(--text-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .svcdesk-nav button:hover {
+      background: var(--accent-terracotta);
+      border-color: var(--accent-terracotta);
+    }
+
+    .svcdesk-nav svg { width: 14px; height: 14px; }
+
+    @media (max-width: 960px) {
+      .svcdesk-header { grid-template-columns: 1fr; gap: 1rem; }
+      .svcdesk-header h2 { max-width: none; }
+      .svcdesk-lead { max-width: none; }
+      .svcdesk-board { grid-template-columns: 1fr; min-height: auto; }
+      .svcdesk-index {
+        flex-direction: row;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-height: none;
+        gap: 0.4rem;
+        padding: 0.55rem 0 0.45rem;
+        scrollbar-width: none;
+        mask-image: linear-gradient(90deg, #000 85%, transparent);
+        position: sticky;
+        top: var(--nav-h);
+        z-index: 6;
+        background: var(--bg-sand);
+      }
+      .svcdesk-index::-webkit-scrollbar { display: none; }
+      .svcdesk-item {
+        flex: 0 0 auto;
+        min-width: 148px;
+        border: 1px solid rgba(18, 32, 36, 0.1);
+        border-bottom: 1px solid rgba(18, 32, 36, 0.1);
+      }
+      /* Stack panel under image — overlay crushed the stage on phones */
+      .svcdesk-stage {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .svcdesk-stage-img,
+      .svcdesk-stage-shade {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        height: 220px;
+        width: 100%;
+      }
+      .svcdesk-panel {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin-top: 220px;
+        max-width: none;
+        padding: 1.15rem 1.1rem 1.25rem;
+        background: var(--bg-midnight);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        border-top: 1px solid rgba(246, 243, 236, 0.1);
+      }
+      .svcdesk-panel h3 { font-size: 1.65rem; }
+      .svcdesk-panel p { font-size: 0.88rem; margin-bottom: 0.75rem; }
+      .svcdesk-points { margin-bottom: 0.85rem; }
+    }
+
+    /* ——— Meridian Log (Destinations) ——— */
+    .atlas {
+      position: relative;
+      background: var(--bg-midnight);
+      color: var(--text-cream);
+      overflow: hidden;
+      padding: clamp(3.5rem, 7vw, 5.5rem) 0 clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .atlas-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(200, 169, 126, 0.35) 0%, transparent 42%),
+        radial-gradient(circle at 80% 70%, rgba(212, 106, 78, 0.2) 0%, transparent 40%),
+        linear-gradient(rgba(246, 243, 236, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(246, 243, 236, 0.06) 1px, transparent 1px);
+      background-size: auto, auto, 42px 42px, 42px 42px;
+    }
+
+    .atlas-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .atlas-header {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .atlas-header .eyebrow { color: var(--accent-gold); }
+
+    .atlas-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+      line-height: 0.95;
+      margin-top: 0.65rem;
+      color: var(--text-cream);
+    }
+
+    .atlas-header h2 em { font-style: italic; color: var(--accent-terracotta); }
+
+    .atlas-header-aside {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.65;
+      opacity: 0.72;
+      max-width: 34ch;
+      justify-self: end;
+      padding-bottom: 0.35rem;
+    }
+
+    .meridian {
+      position: relative;
+      border-top: 1px solid rgba(246, 243, 236, 0.12);
+    }
+
+    .meridian::before {
+      content: '';
+      position: absolute;
+      left: 3.1rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(200, 169, 126, 0.55) 8%,
+        rgba(200, 169, 126, 0.55) 92%,
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .meridian-entry {
+      position: relative;
+      border-bottom: 1px solid rgba(246, 243, 236, 0.1);
+    }
+
+    .meridian-row {
+      display: grid;
+      grid-template-columns: 3.1rem 1fr auto minmax(88px, 120px);
+      gap: 1rem;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      padding: 1.05rem 0 1.05rem 0;
+      color: var(--text-cream);
+      transition: background 0.3s;
+    }
+
+    .meridian-row:hover {
+      background: rgba(246, 243, 236, 0.03);
+    }
+
+    .meridian-entry.is-active .meridian-row {
+      background: transparent;
+    }
+
+    .meridian-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold);
+      position: relative;
+      z-index: 1;
+      padding-left: 0.15rem;
+    }
+
+    .meridian-num::after {
+      content: '';
+      position: absolute;
+      right: -0.55rem;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg-midnight);
+      border: 1.5px solid rgba(200, 169, 126, 0.7);
+      transform: translateY(-50%);
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+
+    .meridian-entry.is-active .meridian-num::after {
+      background: var(--accent-terracotta);
+      border-color: var(--accent-terracotta);
+      transform: translateY(-50%) scale(1.25);
+    }
+
+    .meridian-entry.is-active .meridian-num {
+      color: var(--accent-terracotta);
+    }
+
+    .meridian-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .meridian-lat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      white-space: nowrap;
+    }
+
+    .meridian-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      opacity: 0.75;
+      transition: opacity 0.35s, transform 0.45s;
+    }
+
+    .meridian-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      max-width: none;
+    }
+
+    .meridian-entry.is-active .meridian-thumb {
+      opacity: 0;
+      transform: scale(0.92);
+      pointer-events: none;
+    }
+
+    .meridian-dock {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.55s var(--ease-out), opacity 0.4s ease, margin 0.4s ease;
+      margin: 0;
+    }
+
+    .meridian-entry.is-active .meridian-dock {
+      max-height: 480px;
+      opacity: 1;
+      margin: 0 0 1.25rem 3.1rem;
+    }
+
+    .meridian-dock-visual {
+      position: relative;
+      min-height: 280px;
+      overflow: hidden;
+      background: #071114;
+    }
+
+    .meridian-dock-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      transform: scale(1.06);
+      transition: transform 1.1s var(--ease-out);
+    }
+
+    .meridian-entry.is-active .meridian-dock-visual img {
+      transform: scale(1);
+    }
+
+    .meridian-dock-copy {
+      background: var(--bg-card-dark);
+      border: 1px solid rgba(246, 243, 236, 0.1);
+      border-left: none;
+      padding: clamp(1.25rem, 3vw, 1.85rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .meridian-dock-copy .coords {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.65rem;
+      display: block;
+    }
+
+    .meridian-dock-copy h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .meridian-dock-copy p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.65;
+      opacity: 0.82;
+      margin-bottom: 1.15rem;
+    }
+
+    .meridian-dock-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .meridian-dock-nav button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(246, 243, 236, 0.25);
+      border-radius: 50%;
+      color: var(--text-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .meridian-dock-nav button:hover {
+      background: var(--accent-terracotta);
+      border-color: var(--accent-terracotta);
+    }
+
+    .meridian-dock-nav svg { width: 15px; height: 15px; }
+
+    @media (max-width: 960px) {
+      .atlas-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .atlas-header-aside { justify-self: start; max-width: none; }
+      .meridian::before { left: 1.85rem; }
+      .meridian-row {
+        grid-template-columns: 2.1rem 1fr auto;
+        gap: 0.65rem;
+        padding: 0.95rem 0;
+      }
+      .meridian-name { font-size: 1.15rem; }
+      .meridian-lat { font-size: 0.58rem; }
+      .meridian-thumb { display: none; }
+      .meridian-entry.is-active .meridian-dock {
+        margin-left: 0;
+        grid-template-columns: 1fr;
+        max-height: none;
+      }
+      .meridian-dock-visual { min-height: 200px; max-height: 240px; }
+      .meridian-dock-copy {
+        border-left: none;
+        border-top: 1px solid rgba(246, 243, 236, 0.1);
+        padding: 1.1rem 0.15rem 1.25rem;
+      }
+    }
+
+    /* ——— Concierge / App ——— */
+    .concierge {
+      position: relative;
+      background: var(--bg-midnight);
+      color: var(--text-cream);
+      min-height: 100vh;
+    }
+
+    .concierge-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.95fr) minmax(260px, 1.15fr) minmax(240px, 0.95fr);
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    .concierge-visual {
+      position: relative;
+      height: min(72vh, 560px);
+      border-radius: 2px;
+      overflow: hidden;
+      align-self: center;
+    }
+
+    .concierge-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .concierge-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 24, 29, 0.55) 0%,
+        transparent 45%
+      );
+      pointer-events: none;
+    }
+
+    .concierge-visual-meta {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-cream);
+      opacity: 0.85;
+    }
+
+    .concierge-copy {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+      align-self: center;
+      padding: 2rem 0;
+    }
+
+    .concierge-copy h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      line-height: 1.05;
+      margin: 0.85rem 0 1.5rem;
+    }
+
+    .concierge-copy h2 em { font-style: italic; color: var(--accent-gold); }
+
+    .concierge-copy p {
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      max-width: 38ch;
+    }
+
+    .phone-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+      padding: 2rem 0 4rem;
+      min-height: 560px;
+    }
+
+    .phone {
+      width: 280px;
+      height: 560px;
+      background: #0d0d0d;
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 2px #2a2a2a,
+        0 40px 80px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 24px;
+      background: #0d0d0d;
+      border-radius: 20px;
+      z-index: 5;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(165deg, #143038 0%, #0A181D 55%, #0f2228 100%);
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      padding: 3.5rem 1rem 1.25rem;
+    }
+
+    .phone-status {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      opacity: 0.5;
+      margin-bottom: 1.25rem;
+      padding: 0 0.25rem;
+    }
+
+    .phone-app-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .phone-app-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .notif {
+      background: var(--bg-card-dark);
+      border: 1px solid rgba(246, 243, 236, 0.08);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+      will-change: transform, opacity;
+    }
+
+    .notif-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-terracotta);
+      margin-bottom: 0.35rem;
+    }
+
+    .notif p {
+      font-size: 0.78rem;
+      font-weight: 400;
+      line-height: 1.45;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 1100px) {
+      .concierge-grid {
+        grid-template-columns: 1fr 1fr;
+        min-height: auto;
+      }
+      .concierge-visual {
+        grid-column: 1 / -1;
+        height: min(42vh, 360px);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .concierge.section-pad {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .concierge-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .concierge-copy,
+      .phone-stage {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .concierge-copy { position: static; }
+      .concierge-visual {
+        height: 220px;
+        border-radius: 0;
+        width: 100%;
+      }
+      .phone {
+        width: min(260px, 72vw);
+      }
+    }
+
+    /* ——— Love Stories ——— */
+    .stories {
+      background: var(--bg-midnight);
+      color: var(--text-cream);
+    }
+
+    .stories-header {
+      max-width: 800px;
+      margin-bottom: 3.5rem;
+    }
+
+    .stories-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      margin-top: 0.75rem;
+    }
+
+    .stories-header h2 em { font-style: italic; color: var(--accent-gold); }
+
+    .story-stack {
+      display: grid;
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto 5rem;
+    }
+
+    .story-card {
+      background: var(--bg-card-dark);
+      border: 1px solid rgba(246, 243, 236, 0.06);
+      padding: clamp(1.75rem, 4vw, 2.75rem);
+      position: relative;
+    }
+
+    .story-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent-terracotta);
+      opacity: 0.35;
+      position: absolute;
+      top: 0.5rem;
+      left: 1.25rem;
+    }
+
+    .story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-style: italic;
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .story-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .story-meta strong {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .story-meta span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 1.75rem;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(246, 243, 236, 0.12);
+    }
+
+    .faq-item:last-child { border-bottom: 1px solid rgba(246, 243, 236, 0.12); }
+
+    .faq-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.35rem 0;
+      text-align: left;
+      color: var(--text-cream);
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border: 1px solid rgba(246, 243, 236, 0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.35s var(--ease-out), background 0.35s;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--text-cream);
+    }
+
+    .faq-icon::before { width: 10px; height: 1.5px; }
+    .faq-icon::after { width: 1.5px; height: 10px; transition: transform 0.35s; }
+
+    .faq-item.is-open .faq-icon {
+      background: var(--accent-terracotta);
+      border-color: transparent;
+    }
+
+    .faq-item.is-open .faq-icon::after { transform: scaleY(0); }
+
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease-out);
+    }
+
+    .faq-panel p {
+      padding-bottom: 1.35rem;
+      font-weight: 300;
+      opacity: 0.75;
+      line-height: 1.65;
+      max-width: 52ch;
+    }
+
+    /* ——— Accreditations ——— */
+    .accredit {
+      background: #fff;
+      color: var(--text-ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .accredit-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .accredit-header {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .accredit-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 0.98;
+      margin-top: 0.55rem;
+    }
+
+    .accredit-header h2 em {
+      font-style: italic;
+      color: var(--accent-terracotta);
+    }
+
+    .accredit-lead {
+      font-size: 0.98rem;
+      font-weight: 300;
+      line-height: 1.65;
+      opacity: 0.78;
+      max-width: 42ch;
+      padding-bottom: 0.25rem;
+    }
+
+    .accredit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .accredit-card {
+      background: var(--bg-sand);
+      border: 1px solid rgba(18, 32, 36, 0.08);
+      padding: 1.35rem 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.85rem;
+      min-height: 210px;
+      transition: border-color 0.3s, transform 0.35s var(--ease-out);
+    }
+
+    .accredit-card:hover {
+      border-color: rgba(212, 106, 78, 0.45);
+      transform: translateY(-3px);
+    }
+
+    .accredit-card img {
+      width: auto;
+      height: 72px;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    .accredit-mono {
+      width: 72px;
+      height: 72px;
+      border: 1.5px solid rgba(18, 32, 36, 0.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    .accredit-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .accredit-card p {
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.5;
+      opacity: 0.68;
+    }
+
+    .accredit-note {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(18, 32, 36, 0.1);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .accredit-note-mark {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-emerald);
+      padding-top: 0.2rem;
+    }
+
+    .accredit-note p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.65;
+      opacity: 0.78;
+      max-width: 72ch;
+    }
+
+    @media (max-width: 960px) {
+      .accredit-header { grid-template-columns: 1fr; gap: 1rem; }
+      .accredit-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .accredit-grid { grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+      .accredit-card { min-height: 180px; padding: 1rem 0.75rem; }
+      .accredit-card img { height: 56px; }
+      .accredit-note { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    /* ——— Quote / Configurator ——— */
+    .quote-section {
+      background: var(--bg-sand);
+      color: var(--text-ink);
+      position: relative;
+    }
+
+    .configurator {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid rgba(18, 32, 36, 0.07);
+      padding: clamp(2rem, 5vw, 3.25rem);
+    }
+
+    .configurator h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .configurator > p {
+      font-weight: 300;
+      opacity: 0.7;
+      margin-bottom: 2rem;
+      max-width: 40ch;
+    }
+
+    .config-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-emerald);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .pill {
+      padding: 0.55rem 1rem;
+      border: 1px solid rgba(18, 32, 36, 0.15);
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-ink);
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .pill.is-active,
+    .pill:hover {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: var(--text-cream);
+    }
+
+    .config-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.75rem;
+      background: var(--accent-terracotta);
+      color: var(--text-cream);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 2px;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .config-cta:hover { background: var(--accent-emerald); }
+
+    /* ——— Modal / Drawer ——— */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 24, 29, 0.55);
+      z-index: 9500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .drawer-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(480px, 100%);
+      height: 100%;
+      background: var(--bg-sand);
+      color: var(--text-ink);
+      z-index: 9600;
+      transform: translateX(100%);
+      transition: transform 0.55s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -20px 0 60px rgba(10, 24, 29, 0.2);
+    }
+
+    .drawer.is-open { transform: translateX(0); }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid rgba(18, 32, 36, 0.08);
+    }
+
+    .drawer-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+    }
+
+    .drawer-close {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--text-ink);
+      opacity: 0.6;
+      transition: opacity 0.25s;
+    }
+
+    .drawer-close:hover { opacity: 1; }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.75rem;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+
+    .form-group label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+      opacity: 0.65;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(18, 32, 36, 0.15);
+      background: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-ink);
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.25s;
+      cursor: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent-emerald);
+    }
+
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent-emerald);
+      color: var(--text-cream);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      transition: background 0.3s;
+    }
+
+    .form-submit:hover { background: var(--accent-terracotta); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .form-success.is-visible { display: block; }
+    .form-success h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ——— Footer ——— */
+    .footer {
+      background: var(--bg-midnight);
+      color: var(--text-cream);
+      padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4.5rem) 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand .sub {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .footer-accred {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+      display: block;
+      line-height: 1.6;
+    }
+
+    .footer-contact a,
+    .footer-contact p {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 300;
+      margin-bottom: 0.4rem;
+      opacity: 0.8;
+      transition: opacity 0.25s, color 0.25s;
+    }
+
+    .footer-contact a:hover {
+      opacity: 1;
+      color: var(--accent-gold);
+    }
+
+    .footer-col h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 0.65rem;
+      opacity: 0.7;
+      transition: opacity 0.25s, color 0.25s;
+    }
+
+    .footer-col a:hover {
+      opacity: 1;
+      color: var(--accent-terracotta);
+    }
+
+    .footer-kinetic {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4.5rem, 18vw, 14rem);
+      font-weight: 600;
+      line-height: 0.85;
+      text-align: center;
+      letter-spacing: -0.03em;
+      color: var(--text-cream);
+      opacity: 0.08;
+      white-space: nowrap;
+      overflow: hidden;
+      margin: 2rem 0 1.5rem;
+      will-change: transform, opacity;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.78rem;
+      opacity: 0.45;
+      font-weight: 300;
+      position: relative;
+      z-index: 2;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(246, 243, 236, 0.08);
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      .section-pad { padding: clamp(2.75rem, 8vw, 4rem) 1.15rem; }
+      .nav {
+        padding: 0 max(1.1rem, env(safe-area-inset-right)) 0 max(1.1rem, env(safe-area-inset-left));
+        height: var(--nav-h);
+        padding-top: env(safe-area-inset-top);
+      }
+      .nav-brand {
+        font-size: 0.98rem;
+        max-width: 9.5ch;
+        line-height: 1.05;
+      }
+      .nav-badge { display: none; }
+      .nav-links { padding: 1.25rem 1.15rem 1.75rem; }
+      .cursor-dot,
+      .cursor-ring { display: none !important; }
+      body { cursor: auto; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-glass { flex-wrap: wrap; white-space: normal; justify-content: center; }
+      .hero-coord + .hero-coord { border-left: none; padding-left: 0; }
+      .story-card { padding: 1.5rem 1.15rem 1.35rem; }
+      .story-card::before { left: 0.85rem; font-size: 3.5rem; }
+      .configurator { padding: 1.5rem 1.15rem; }
+      .drawer { width: 100%; max-width: 100%; }
+      .phone-stage { perspective: none; }
+    }
+
+    @media (max-width: 400px) {
+      .svcdesk-stage-img,
+      .svcdesk-stage-shade { height: 190px; }
+      .svcdesk-panel { margin-top: 190px; padding: 1rem 0.95rem 1.1rem; }
+      .meridian-row { padding-left: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body style="">
+  <!-- Film grain -->
+  <svg class="film-grain" aria-hidden="true">
+    <filter id="grainFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grainFilter)"></rect>
+  </svg>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true">
+    <span class="cursor-label" id="cursorLabel">EXPLORE</span>
+  </div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" role="status" aria-live="polite">
+    <div class="preloader-brand">Kinetic Meets Global</div>
+    <div class="preloader-counter" id="preloaderCounter">00%</div>
+    <div class="preloader-line"><span id="preloaderBar" style="display:none"></span></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="nav-left">
+      <a href="#hero" class="nav-brand" data-cursor="EXPLORE">KMG TOURS &amp; TRAVEL</a>
+      <span class="nav-badge">CCRA Accredited</span>
+    </div>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#services" data-cursor="EXPLORE">Services</a>
+      <a href="#destinations" data-cursor="EXPLORE">Destinations</a>
+      <a href="#app" data-cursor="EXPLORE">Mobile App</a>
+      <a href="#stories" data-cursor="EXPLORE">Love Stories</a>
+      <a href="#accreditations" data-cursor="EXPLORE">Accreditations</a>
+      <a href="#working" data-cursor="EXPLORE">Working With Us</a>
+      <a href="https://book.kmgtraveltt.com/" target="_blank" rel="noopener noreferrer" data-cursor="BOOK">Book Online</a>
+      <button type="button" class="nav-cta" id="navQuoteBtn" data-cursor="BOOK">Request a Quote</button>
+    </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero Portal -->
+    <section class="hero-wrap" id="hero">
+      <div class="hero-pin" id="heroPin">
+        <div class="hero-portal" id="heroPortal">
+          <img class="hero-portal-img" id="heroImg" data-asset="hero" alt="Plan Smarter. Travel Better. — KMG Tours &amp; Travel">
+          <div class="hero-portal-shade" id="heroShade"></div>
+        </div>
+
+        <div class="hero-pattern hero-pattern--left" id="heroPatternLeft" aria-hidden="true">
+          <svg viewBox="0 0 120 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 8 C60 8 28 42 28 78 C28 108 44 128 60 148 C76 128 92 108 92 78 C92 42 60 8 60 8Z" stroke="currentColor" stroke-width="1.2"></path>
+            <path d="M60 28 C60 28 42 48 42 72 C42 92 50 106 60 120 C70 106 78 92 78 72 C78 48 60 28 60 28Z" stroke="currentColor" stroke-width="1"></path>
+            <path d="M60 148 V172" stroke="currentColor" stroke-width="1.2"></path>
+            <circle cx="60" cy="18" r="2.5" fill="currentColor" opacity="0.5"></circle>
+            <path d="M18 96 C32 88 48 92 60 104" stroke="currentColor" stroke-width="0.9" opacity="0.7"></path>
+            <path d="M102 96 C88 88 72 92 60 104" stroke="currentColor" stroke-width="0.9" opacity="0.7"></path>
+            <path d="M24 56 C36 52 48 58 54 68" stroke="currentColor" stroke-width="0.8" opacity="0.55"></path>
+            <path d="M96 56 C84 52 72 58 66 68" stroke="currentColor" stroke-width="0.8" opacity="0.55"></path>
+          </svg>
+        </div>
+
+        <div class="hero-pattern hero-pattern--right" id="heroPatternRight" aria-hidden="true">
+          <svg viewBox="0 0 110 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="55" cy="55" r="40" stroke="currentColor" stroke-width="1"></circle>
+            <circle cx="55" cy="55" r="26" stroke="currentColor" stroke-width="0.9" stroke-dasharray="3 4"></circle>
+            <circle cx="55" cy="55" r="12" stroke="currentColor" stroke-width="1"></circle>
+            <path d="M55 95 V155" stroke="currentColor" stroke-width="1"></path>
+            <path d="M40 118 H70" stroke="currentColor" stroke-width="0.9"></path>
+            <path d="M44 138 H66" stroke="currentColor" stroke-width="0.9"></path>
+            <path d="M48 155 H62" stroke="currentColor" stroke-width="0.9"></path>
+            <path d="M55 15 L58 28 L55 25 L52 28 Z" fill="currentColor" opacity="0.45"></path>
+          </svg>
+        </div>
+
+        <div class="hero-copy" id="heroCopy">
+          <span class="eyebrow">Caribbean &amp; Mexico Specialists • Couva, Trinidad</span>
+          <h1 class="display">Plan Smarter.<br><em>Travel Better.</em></h1>
+          <div class="hero-pattern hero-pattern--dots" id="heroPatternDots" aria-hidden="true">
+            <svg viewBox="0 0 520 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <path d="M0 24 H200" stroke="currentColor" stroke-width="1" stroke-dasharray="2 6"></path>
+              <circle cx="220" cy="24" r="2.5" fill="currentColor"></circle>
+              <circle cx="240" cy="24" r="2.5" fill="currentColor" opacity="0.55"></circle>
+              <circle cx="260" cy="24" r="2.5" fill="currentColor"></circle>
+              <circle cx="280" cy="24" r="2.5" fill="currentColor" opacity="0.55"></circle>
+              <circle cx="300" cy="24" r="2.5" fill="currentColor"></circle>
+              <path d="M320 24 H520" stroke="currentColor" stroke-width="1" stroke-dasharray="2 6"></path>
+            </svg>
+          </div>
+          <p class="hero-sub">Save time, avoid stress, and experience more with a trusted travel partner. We specialize in group and family travel, all-inclusive, destination weddings, honeymoons — Caribbean &amp; Mexico.</p>
+        </div>
+        <div class="hero-glass" id="heroGlass">
+          <span class="hero-coord">St. Lucia 13.9094° N</span>
+          <span class="hero-coord">Cancún 21.1619° N</span>
+          <span class="hero-coord">Couva, TT 10.4228° N</span>
+          <button type="button" class="hero-glass-cta" id="heroConsultBtn" data-cursor="BOOK">Complimentary Consult →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Service Desk -->
+    <section class="svcdesk section-pad" id="services">
+      <div class="svcdesk-shell">
+        <header class="svcdesk-header">
+          <div>
+            <span class="eyebrow">Services</span>
+            <h2>Everything for<br>the <em>journey.</em></h2>
+          </div>
+          <p class="svcdesk-lead">
+            Our agency provides a range of services for every kind of trip. Please feel free to contact us with your specific travel and vacation needs.
+          </p>
+        </header>
+
+        <div class="svcdesk-board">
+          <div class="svcdesk-index" id="svcdeskIndex" role="tablist" aria-label="KMG services">
+            <button type="button" class="svcdesk-item is-active" role="tab" aria-selected="true" data-index="0" data-cursor="EXPLORE" data-title="Flights" data-copy="Affordable, convenient flights from multiple airlines — non-stop, one-way, and round-trip. Our advisors find the best deals for business or pleasure, with 24/7 support for a stress-free journey." data-points="Multi-airline|Best deals|24/7 support" data-cta="Request Flight Quote" data-href="#working">
+              <span class="svcdesk-item-num">01</span>
+              <span class="svcdesk-item-name">Flights</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="1" data-cursor="EXPLORE" data-title="Accommodation" data-copy="From luxurious resorts to cozy bed and breakfasts, we partner with top-rated properties worldwide. Competitive rates and special deals — we handle booking to check-in so you can focus on the memories." data-points="Resorts and B&amp;Bs|Preferred rates|Full booking care" data-cta="Find My Stay" data-href="#working">
+              <span class="svcdesk-item-num">02</span>
+              <span class="svcdesk-item-name">Accommodation</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="2" data-cursor="EXPLORE" data-title="Self-Booking" data-copy="Know exactly what you want? KMG's Online Travel Agency lets you book flights, hotels, car rentals, and activities yourself — secure payments in local currency, savings up to 60%, and a simple interface. Prefer guidance? Schedule a call." data-points="Local currency|Save up to 60%|Free to register" data-cta="Book Online" data-href="https://book.kmgtraveltt.com/">
+              <span class="svcdesk-item-num">03</span>
+              <span class="svcdesk-item-name">Self-Booking</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="3" data-cursor="EXPLORE" data-title="Vacation Packages" data-copy="Hassle-free packages that combine flights, stays, and excursions. Choose a pre-designed plan or a personalized itinerary — from romantic getaways to family fun and adventurous outdoor trips." data-points="All-inclusive options|Custom itineraries|Best value" data-cta="Build a Package" data-href="#working">
+              <span class="svcdesk-item-num">04</span>
+              <span class="svcdesk-item-name">Vacation Packages</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="4" data-cursor="EXPLORE" data-title="Cruise Packages" data-copy="Explore the Caribbean, Alaska, or the Mediterranean. Our cruise packages cover luxurious accommodations, gourmet dining, and onboard activities — visit multiple destinations in one unforgettable voyage." data-points="Caribbean and beyond|CLIA certified|All budgets" data-cta="Plan a Cruise" data-href="#working">
+              <span class="svcdesk-item-num">05</span>
+              <span class="svcdesk-item-name">Cruise Packages</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="5" data-cursor="EXPLORE" data-title="Honeymoon Packages" data-copy="Congratulations on your engagement. We craft unforgettable honeymoons — beachfront resorts, private dinners, and exciting excursions tailored to your desires, interests, and budget." data-points="Bespoke romance|Flights and stays|Excursions included" data-cta="Plan Our Honeymoon" data-href="#working">
+              <span class="svcdesk-item-num">06</span>
+              <span class="svcdesk-item-name">Honeymoon Packages</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="6" data-cursor="EXPLORE" data-title="Travel Medical Insurance" data-copy="Protect your trip with International Medical Group (IMG) — emergency medical evacuation, 24/7 worldwide assistance, and options for pre-existing conditions. Plans customize to your needs and budget." data-points="IMG partner|Evacuation cover|24/7 assistance" data-cta="Ask About IMG" data-href="#working">
+              <span class="svcdesk-item-num">07</span>
+              <span class="svcdesk-item-name">Travel Medical Insurance</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="7" data-cursor="EXPLORE" data-title="Activities &amp; Tours" data-copy="Sightseeing, adventure, culture, and water — hiking, zip-lines, city tours, snorkeling, scuba, and sunset cruises. Led by experienced guides who showcase the best of each destination." data-points="Adventure and culture|Water sports|Expert guides" data-cta="Add Experiences" data-href="#working">
+              <span class="svcdesk-item-num">08</span>
+              <span class="svcdesk-item-name">Activities / Tours</span>
+            </button>
+            <button type="button" class="svcdesk-item" role="tab" aria-selected="false" data-index="8" data-cursor="EXPLORE" data-title="Transfers &amp; Vehicle Rentals" data-copy="Seamless airport transfers with professional drivers, plus car, SUV, and van rentals for flexibility on the ground. Competitive prices and convenient pick-up and drop-off." data-points="Airport transfers|Cars · SUVs · Vans|Flexible pickup" data-cta="Arrange Transport" data-href="#working">
+              <span class="svcdesk-item-num">09</span>
+              <span class="svcdesk-item-name">Transfers &amp; Rentals</span>
+            </button>
+          </div>
+
+          <div class="svcdesk-stage" id="svcdeskStage">
+            <img class="svcdesk-stage-img is-active" data-asset="svcFlights" data-stage="0" alt="Flights">
+            <img class="svcdesk-stage-img" data-asset="svcStay" data-stage="1" alt="Accommodation">
+            <img class="svcdesk-stage-img" data-asset="svcSelf" data-stage="2" alt="Self-Booking">
+            <img class="svcdesk-stage-img" data-asset="svcVacation" data-stage="3" alt="Vacation Packages">
+            <img class="svcdesk-stage-img" data-asset="svcCruise" data-stage="4" alt="Cruise Packages">
+            <img class="svcdesk-stage-img" data-asset="svcHoneymoon" data-stage="5" alt="Honeymoon Packages">
+            <img class="svcdesk-stage-img" data-asset="svcInsurance" data-stage="6" alt="Travel Medical Insurance">
+            <img class="svcdesk-stage-img" data-asset="svcTours" data-stage="7" alt="Activities and Tours">
+            <img class="svcdesk-stage-img" data-asset="svcTransfers" data-stage="8" alt="Transfers and Vehicle Rentals">
+            <div class="svcdesk-stage-shade"></div>
+            <div class="svcdesk-panel">
+              <span class="svcdesk-panel-index" id="svcdeskIndexLabel">01 / 09</span>
+              <h3 id="svcdeskTitle">Flights</h3>
+              <p id="svcdeskCopy">Affordable, convenient flights from multiple airlines — non-stop, one-way, and round-trip. Our advisors find the best deals for business or pleasure, with 24/7 support for a stress-free journey.</p>
+              <div class="svcdesk-points" id="svcdeskPoints">
+                <span>Multi-airline</span><span>Best deals</span><span>24/7 support</span>
+              </div>
+              <div class="svcdesk-actions">
+                <a class="svcdesk-cta" id="svcdeskCta" href="#working" data-cursor="BOOK">Request Flight Quote</a>
+                <div class="svcdesk-nav">
+                  <button type="button" id="svcdeskPrev" aria-label="Previous service" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"></path></svg>
+                  </button>
+                  <button type="button" id="svcdeskNext" aria-label="Next service" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Meridian Log -->
+    <section class="atlas" id="destinations">
+      <div class="atlas-pattern" aria-hidden="true"></div>
+      <div class="atlas-shell">
+        <div class="atlas-header">
+          <div>
+            <span class="eyebrow">Caribbean &amp; Mexico Atlas</span>
+            <h2>Eight islands.<br /><em>Infinite stories.</em></h2>
+          </div>
+          <p class="atlas-header-aside">
+            From Cancún’s turquoise shore to St. Lucia’s rainforests — open a latitude to read the destination story.
+          </p>
+        </div>
+
+        <div class="meridian" id="meridian" role="list">
+          <article class="meridian-entry is-active" data-index="0" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="true">
+              <span class="meridian-num">01</span>
+              <span class="meridian-name">St. Lucia</span>
+              <span class="meridian-lat">13.9094° N</span>
+              <span class="meridian-thumb"><img data-asset="stlucia" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="stlucia" alt="St. Lucia" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">13.9094° N · 60.9789° W</span>
+                <h3>St. Lucia</h3>
+                <p>A honeymoon paradise known for its dramatic Pitons, luxury resorts, and stunning sunsets.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="1" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">02</span>
+              <span class="meridian-name">Cancún &amp; Riviera Maya</span>
+              <span class="meridian-lat">21.1619° N</span>
+              <span class="meridian-thumb"><img data-asset="cancun" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="cancun" alt="Cancún" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">21.1619° N · 86.8515° W</span>
+                <h3>Cancún &amp; Riviera Maya</h3>
+                <p>Breathtaking turquoise waters, top-rated all-inclusive resorts, and endless activities.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="2" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">03</span>
+              <span class="meridian-name">Grenada</span>
+              <span class="meridian-lat">12.1165° N</span>
+              <span class="meridian-thumb"><img data-asset="grenada" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="grenada" alt="Grenada" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">12.1165° N · 61.6790° W</span>
+                <h3>Grenada — The Spice Island</h3>
+                <p>Known as the Spice Island — intimate resorts, secluded beaches, and lush landscapes.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="3" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">04</span>
+              <span class="meridian-name">Barbados</span>
+              <span class="meridian-lat">13.1939° N</span>
+              <span class="meridian-thumb"><img data-asset="barbados" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="barbados" alt="Barbados" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">13.1939° N · 59.5432° W</span>
+                <h3>Barbados</h3>
+                <p>Crystal-clear waters, fine dining, and charming island life — ideal for couples seeking luxury and fun.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="4" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">05</span>
+              <span class="meridian-name">Jamaica &amp; DR</span>
+              <span class="meridian-lat">18.1096° N</span>
+              <span class="meridian-thumb"><img data-asset="jamaica" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="jamaica" alt="Jamaica" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">18.1096° N · 77.2975° W</span>
+                <h3>Jamaica &amp; Dominican Republic</h3>
+                <p>The perfect mix of adventure and relaxation — all-inclusive resorts, pristine beaches, and rich cultural experiences.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="5" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">06</span>
+              <span class="meridian-name">Puerto Rico &amp; Curaçao</span>
+              <span class="meridian-lat">18.4655° N</span>
+              <span class="meridian-thumb"><img data-asset="puertorico" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="puertorico" alt="Puerto Rico" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">18.4655° N · 66.1057° W</span>
+                <h3>Puerto Rico &amp; Curaçao</h3>
+                <p>Romance, adventure, and culture — Old San Juan cobblestones, El Yunque waterfalls, and Curaçao's colorful coastal architecture.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="6" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">07</span>
+              <span class="meridian-name">Cozumel &amp; St. Vincent</span>
+              <span class="meridian-lat">20.4229° N</span>
+              <span class="meridian-thumb"><img data-asset="cozumel" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="cozumel" alt="Cozumel" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">20.4229° N · 86.9223° W</span>
+                <h3>Cozumel &amp; St. Vincent</h3>
+                <p>Tranquil island retreats with luxurious resorts, stunning diving, volcanic beaches, and serene romantic escapes.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="meridian-entry" data-index="7" role="listitem">
+            <button type="button" class="meridian-row" data-cursor="EXPLORE" aria-expanded="false">
+              <span class="meridian-num">08</span>
+              <span class="meridian-name">Trinidad &amp; Tobago</span>
+              <span class="meridian-lat">10.4228° N</span>
+              <span class="meridian-thumb"><img data-asset="trinidad" alt="" /></span>
+            </button>
+            <div class="meridian-dock">
+              <div class="meridian-dock-visual"><img data-asset="trinidad" alt="Trinidad &amp; Tobago" /></div>
+              <div class="meridian-dock-copy">
+                <span class="coords">10.4228° N · 61.4796° W</span>
+                <h3>Trinidad &amp; Tobago</h3>
+                <p>Twin-island Creole culture, Carnival rhythms, Asa Wright bird sanctuaries, and Tobago Main Ridge Forest Reserve.</p>
+                <div class="meridian-dock-nav">
+                  <button type="button" class="meridian-prev" aria-label="Previous destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6 L9 12 L15 18"/></svg>
+                  </button>
+                  <button type="button" class="meridian-next" aria-label="Next destination" data-cursor="DRAG">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6 L15 12 L9 18"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Pocket Concierge -->
+    <section class="concierge section-pad" id="app">
+      <div class="concierge-grid">
+        <figure class="concierge-visual" data-cursor="EXPLORE">
+          <img data-asset="concierge" alt="Travelers enjoying a Caribbean resort with itinerary in hand">
+          <figcaption class="concierge-visual-meta">Live itinerary · iOS &amp; Android</figcaption>
+        </figure>
+        <div class="concierge-copy">
+          <span class="eyebrow">The Pocket Concierge</span>
+          <h2>Electronic Proposals &amp; <em>Real-Time</em> Mobile App</h2>
+          <p>We deliver beautiful and easy-to-read proposals and itineraries to you electronically, with a free application to view itineraries on your phone or tablet. Whether you use Android or iOS, we've got you covered. This itinerary updates in real-time for flight or gate changes.</p>
+        </div>
+        <div class="phone-stage">
+          <div class="phone" id="phone" aria-hidden="true">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-status"><span>9:41</span><span>KMG Concierge</span></div>
+              <div class="phone-app-header">Your Trip</div>
+              <div class="phone-app-sub">St. Lucia · Live Updates</div>
+              <div class="notif" data-notif="1">
+                <div class="notif-label">✈️ Live Gate Update</div>
+                <p>Flight to St. Lucia (UVF) • Gate Changed to B4 • Updated in Real-Time</p>
+              </div>
+              <div class="notif" data-notif="2">
+                <div class="notif-label">🥂 Today's Itinerary</div>
+                <p>5:00 PM Private Sunset Cruise — Pitons Bay</p>
+              </div>
+              <div class="notif" data-notif="3">
+                <div class="notif-label">🏝️ Resort Check-In</div>
+                <p>Swim-Out Oceanfront Suite Confirmed + Private Candlelight Dinner</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Love Stories + FAQ -->
+    <section class="stories section-pad" id="stories">
+      <div class="stories-header">
+        <span class="eyebrow">Testimonials</span>
+        <h2>Real Couples.<br><em>Real Love Stories.</em></h2>
+      </div>
+      <div class="story-stack">
+        <blockquote class="story-card" data-cursor="EXPLORE">
+          <p class="story-quote">I was planning my wedding on a tight budget, and the KMG team was very patient and gave me an array of the best options within my budget for the honeymoon... I felt like I had a guardian angel or a silent travel partner looking after me from start to end... Oh, and did I mention the itinerary? I am very big on details and structure, so I felt like I knew exactly what was happening, when, and how. No surprises. Awesome!</p>
+          <div class="story-meta">
+            <strong>Lisa &amp; Jerid</strong>
+            <span>Honeymoon</span>
+          </div>
+        </blockquote>
+        <blockquote class="story-card" data-cursor="EXPLORE">
+          <p class="story-quote">Our honeymoon at Sandals St. Lucia was nothing short of magical, and we have Kinetic Meets Global Tours and Travel to thank for making it all happen!... They even arranged a private sunset cruise for us, which was the highlight of our trip! Every detail was handled seamlessly, from our beachfront suite to the private candlelight dinner they set up.</p>
+          <div class="story-meta">
+            <strong>Rachel &amp; David</strong>
+            <span>Sandals Grande St. Lucian</span>
+          </div>
+        </blockquote>
+        <blockquote class="story-card" data-cursor="EXPLORE">
+          <p class="story-quote">We wanted a luxury resort with an intimate feel, a private plunge pool, personalized excursions, and of course, an oceanfront view. Kinetic Meets Global nailed every single detail... Kinetic Meets Global arranged a special island tour just for us, where we got to explore Grenada's spice plantations and waterfalls. We never had to lift a finger—they took care of it all.</p>
+          <div class="story-meta">
+            <strong>Samantha &amp; Chris</strong>
+            <span>Grenada</span>
+          </div>
+        </blockquote>
+      </div>
+
+      <div class="faq" id="faq">
+        <h3>Frequently Asked</h3>
+        <div class="faq-item">
+          <button type="button" class="faq-btn" data-cursor="EXPLORE" aria-expanded="false">
+            <span>What's included in an all-inclusive honeymoon or group package?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-panel">
+            <p>Flights, transfers, resort accommodations, meals, drinks, and select activities.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-btn" data-cursor="EXPLORE" aria-expanded="false">
+            <span>Can we customize our itinerary?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-panel">
+            <p>Yes! Free Independent Travel (FIT) and custom itineraries built around your preferences and budget.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-btn" data-cursor="EXPLORE" aria-expanded="false">
+            <span>Do you handle destination weddings as well?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-panel">
+            <p>Yes! We specialize in both honeymoons, destination weddings, and family/group travel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Accreditations & Certifications -->
+    <section class="accredit section-pad" id="accreditations">
+      <div class="accredit-inner">
+        <div class="accredit-header">
+          <div>
+            <span class="eyebrow">Our Commitment to Excellence</span>
+            <h2>Accreditations &amp;<br><em>Certifications</em></h2>
+          </div>
+          <p class="accredit-lead">
+            We take pride in maintaining the highest standards in the travel industry. Our credentials open preferred-supplier access, competitive rates, and unique opportunities for every client.
+          </p>
+        </div>
+
+        <div class="accredit-grid">
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgeTrue" alt="TRUE Accredited Travel Agency — CCRA">
+            <h3>TRUE / CCRA Accredited</h3>
+            <p>Professionally recognized by travel suppliers worldwide through CCRA's TRUE accreditation.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgeTravefy" alt="Travefy Certified">
+            <h3>Travefy Certified</h3>
+            <p>Certified to deliver beautiful electronic proposals and live mobile itineraries.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgeTravefyAdv" alt="Travefy Advanced Certification">
+            <h3>Travefy Advanced</h3>
+            <p>Advanced certification for elevated trip design, client experience, and digital delivery.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgeClia" alt="CLIA Certified 2022">
+            <h3>CLIA Certified</h3>
+            <p>Cruise Lines International Association credentials for ocean and Caribbean cruise planning.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgeStLucia" alt="Saint Lucia Expert">
+            <h3>Saint Lucia Expert</h3>
+            <p>Destination specialist for the Pitons, luxury resorts, and unforgettable island romance.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgeGrenada" alt="Grenada Travel Expert — Pure Grenada">
+            <h3>Grenada Travel Expert</h3>
+            <p>Pure Grenada certified — Spice Island resorts, plantations, and secluded beaches.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <img data-asset="badgePuertoRico" alt="Discover Puerto Rico Travel Specialist">
+            <h3>Puerto Rico Specialist</h3>
+            <p>Discover Puerto Rico Travel Specialist — Old San Juan to El Yunque and beyond.</p>
+          </article>
+          <article class="accredit-card" data-cursor="EXPLORE">
+            <div class="accredit-mono" aria-hidden="true">IMG</div>
+            <h3>IMG Travel Medical</h3>
+            <p>Trusted partner for travel medical insurance — evacuation, 24/7 assistance, and peace of mind.</p>
+          </article>
+        </div>
+
+        <div class="accredit-note">
+          <span class="accredit-note-mark">CCRA</span>
+          <p>
+            We are proud to hold CCRA accreditation. This demonstrates our dedication to providing the best possible travel experience — and ensures access to a wide range of travel resources and tools. In addition to our CCRA certification, we regularly attend training and education programs to stay up-to-date on the latest industry trends and best practices.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Quote Configurator -->
+    <section class="quote-section section-pad" id="working">
+      <div class="configurator" id="configurator">
+        <span class="eyebrow">Complimentary Consult</span>
+        <h2>Build your journey.</h2>
+        <p>Tell us how you travel. We'll craft a personalized proposal with preferred-supplier access and CCRA-backed peace of mind.</p>
+
+        <span class="config-label">Trip Style</span>
+        <div class="pill-row" id="tripStylePills" role="group" aria-label="Trip style">
+          <button type="button" class="pill is-active" data-value="Group / Family Vacation" data-cursor="EXPLORE">Group / Family Vacation</button>
+          <button type="button" class="pill" data-value="Honeymoon" data-cursor="EXPLORE">Honeymoon</button>
+          <button type="button" class="pill" data-value="Destination Wedding" data-cursor="EXPLORE">Destination Wedding</button>
+          <button type="button" class="pill" data-value="Custom FIT Getaway" data-cursor="EXPLORE">Custom FIT Getaway</button>
+        </div>
+
+        <span class="config-label">Destination</span>
+        <div class="pill-row" id="destPills" role="group" aria-label="Destination">
+          <button type="button" class="pill is-active" data-value="Caribbean Islands" data-cursor="EXPLORE">Caribbean Islands</button>
+          <button type="button" class="pill" data-value="Mexico (Cancún / Riviera Maya / Cozumel)" data-cursor="EXPLORE">Mexico (Cancún / Riviera Maya / Cozumel)</button>
+          <button type="button" class="pill" data-value="Undecided — Inspire Me" data-cursor="EXPLORE">Undecided — Inspire Me</button>
+        </div>
+
+        <button type="button" class="config-cta" id="openQuoteBtn" data-cursor="BOOK">
+          Continue to Quote →
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>KMG Tours &amp; Travel</h3>
+        <p class="sub">Kinetic Meets Global Tours and Travel</p>
+        <span class="footer-accred">CCRA Accredited Travel Agency — Our Commitment to Excellence</span>
+        <div class="footer-contact">
+          <p>Couva, Trinidad &amp; Tobago</p>
+          <a href="tel:+18683731875">(868) 373-1875</a>
+          <a href="tel:+18682692569">(868) 269-2569</a>
+          <a href="mailto:info@kmgtraveltt.com">info@kmgtraveltt.com</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#services">Services</a>
+        <a href="#destinations">Inspirations</a>
+        <a href="#stories">Testimonials</a>
+        <a href="#accreditations">Accreditations</a>
+        <a href="#working">Working With Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://book.kmgtraveltt.com/" target="_blank" rel="noopener noreferrer" data-cursor="BOOK">Book Online</a>
+        <a href="#working" data-cursor="BOOK">Subscribe to Newsletter</a>
+        <a href="#working" data-cursor="BOOK">Customer Feedback</a>
+        <a href="mailto:info@kmgtraveltt.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-kinetic" id="footerKinetic">KMG TRAVEL</div>
+    <p class="footer-bottom">© Copyright of Kinetic Meets Global Tours and Travel 2026</p>
+  </footer>
+
+  <!-- Quote Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+    <div class="drawer-header">
+      <h3 id="drawerTitle">Request a Quote</h3>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="Close" data-cursor="EXPLORE">×</button>
+    </div>
+    <div class="drawer-body">
+      <form id="quoteForm" novalidate="">
+        <div class="form-group">
+          <label for="qTripStyle">Trip Style</label>
+          <select id="qTripStyle" name="tripStyle">
+            <option>Group / Family Vacation</option>
+            <option>Honeymoon</option>
+            <option>Destination Wedding</option>
+            <option>Custom FIT Getaway</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="qDest">Destination</label>
+          <select id="qDest" name="destination">
+            <option>Caribbean Islands</option>
+            <option>Mexico (Cancún / Riviera Maya / Cozumel)</option>
+            <option>Undecided — Inspire Me</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="qName">Your Name</label>
+          <input type="text" id="qName" name="name" required="" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="qEmail">Your Email Address</label>
+          <input type="email" id="qEmail" name="email" required="" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="qPhone">Phone / WhatsApp</label>
+          <input type="tel" id="qPhone" name="phone" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="qMessage">Your Message</label>
+          <textarea id="qMessage" name="message" placeholder="Hey, I'm ready to plan a trip..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" data-cursor="BOOK">Send My Request</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <h4>You're on our radar.</h4>
+        <p>Thank you. A KMG consultant will reach out shortly with your complimentary consult.</p>
+      </div>
+    </div>
+  </aside>
+
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    /* Storebox media CDN (https://media.storebox.ai) */
+    const KMG_ASSETS = {
+      logo: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/f7816c4f-4a54-44d5-ac10-606fca086d2e/logo.png',
+      hero: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/b46a65fb-ba70-4457-9220-0ec39cfc4a5a/hero.jpg',
+      stlucia: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/ac3bcf37-0a6e-4f06-8976-824134b4f928/stlucia.jpg',
+      cancun: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/26545695-f7b1-4040-83af-796a9720202a/cancun.jpg',
+      grenada: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/0603e8ba-cd23-44d9-8865-52fe026f047b/grenada.jpg',
+      barbados: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/07fc0a10-8e34-4d10-9368-c59afee7a653/barbados.jpg',
+      jamaica: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/9b956374-5234-4fb1-ba73-1ad555f3ff2c/jamaica.jpg',
+      puertorico: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/d48f2879-a01b-4175-8f96-c48e5038a045/puertorico.jpg',
+      cozumel: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/96455574-545a-43f0-b106-c669a2c1f173/cozumel.jpg',
+      trinidad: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/0981086e-e234-4bfe-9dbd-80f8fab1085d/trinidad.jpg',
+      concierge: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/27f505d7-bdf3-4795-a25f-ecb0f6173e06/concierge.jpg',
+      svcFlights: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/05b2b3a8-178a-4919-8113-4bd254a4908e/svc-flights.jpg',
+      svcStay: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/ea78f71c-6be0-43cd-b649-f2404373faaf/svc-stay.jpg',
+      svcSelf: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/9687626e-c3dc-4a89-be7f-0c864407738c/svc-self.jpg',
+      svcVacation: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/26545695-f7b1-4040-83af-796a9720202a/cancun.jpg',
+      svcCruise: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/5e501cbf-a2a9-44f8-912a-feb2b66fe553/svc-cruise.jpg',
+      svcHoneymoon: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/0a2a200c-ca6f-4464-b6da-aaed667fedbe/svc-honeymoon.jpg',
+      svcInsurance: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/dff7701a-0c05-4242-8b3b-0de6f492b049/svc-insurance.jpg',
+      svcTours: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/ac3bcf37-0a6e-4f06-8976-824134b4f928/stlucia.jpg',
+      svcTransfers: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/27f505d7-bdf3-4795-a25f-ecb0f6173e06/concierge.jpg',
+      badgeTrue: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/b9b82c99-44ce-43eb-88c0-6f0ea38efbfc/true-ccra.png',
+      badgeTravefy: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/1dcc3b98-a18b-4e2e-baae-fe25bc4ec89a/travefy.png',
+      badgeTravefyAdv: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/5d2d864f-36f2-44ca-b46b-9f0425df11bf/travefy-advanced.png',
+      badgeClia: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/2856202a-36a4-4ef1-92a3-57d506b13aa9/clia.png',
+      badgeStLucia: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/8c7208be-40a1-40db-91d3-0e345c67037e/st-lucia-expert.png',
+      badgeGrenada: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/f29256ff-5571-4635-a6b5-039cc3caabd2/grenada-expert.png',
+      badgePuertoRico: 'https://media.storebox.ai/media/c266d7c2-ab03-4095-9d1b-7835aab79a24/397a4251-bfc2-40c8-a1b9-58cdc5d29298/puerto-rico.png'
+    };
+
+    (function bindAssets() {
+      document.querySelectorAll('[data-asset]').forEach(function (el) {
+        var key = el.getAttribute('data-asset');
+        if (KMG_ASSETS[key]) {
+          if (el.tagName === 'IMG') {
+            el.src = KMG_ASSETS[key];
+            el.loading = el.id === 'heroImg' ? 'eager' : 'lazy';
+          } else {
+            el.style.backgroundImage = 'url(' + KMG_ASSETS[key] + ')';
+          }
+        }
+      });
+    })();
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lenis = null;
+    var mm = null;
+
+    /* ——— Preloader ——— */
+    function runPreloader() {
+      return new Promise(function (resolve) {
+        var counter = document.getElementById('preloaderCounter');
+        var preloader = document.getElementById('preloader');
+        if (!preloader) { resolve(); return; }
+
+        var line = preloader.querySelector('.preloader-line');
+        var bar = document.createElement('div');
+        bar.style.cssText = 'position:absolute;inset:0;background:var(--accent-terracotta);transform:scaleX(0);transform-origin:left;';
+        line.appendChild(bar);
+
+        var settled = false;
+        function finish() {
+          if (settled) return;
+          settled = true;
+          gsap.to(preloader, {
+            yPercent: -100,
+            duration: reducedMotion ? 0.35 : 0.9,
+            ease: 'power4.inOut',
+            onComplete: function () {
+              preloader.remove();
+              resolve();
+            }
+          });
+        }
+
+        var obj = { n: 0 };
+        gsap.to(obj, {
+          n: 100,
+          duration: reducedMotion ? 0.25 : 1.35,
+          ease: 'power2.inOut',
+          onUpdate: function () {
+            var v = Math.round(obj.n);
+            counter.textContent = String(v).padStart(2, '0') + '%';
+            bar.style.transform = 'scaleX(' + (obj.n / 100) + ')';
+          },
+          onComplete: finish
+        });
+
+        /* Safety: never block the page if the ticker stalls */
+        setTimeout(finish, 3200);
+      });
+    }
+
+    /* ——— Magnetic Cursor ——— */
+    function initCursor() {
+      if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+      var dot = document.getElementById('cursorDot');
+      var ring = document.getElementById('cursorRing');
+      var label = document.getElementById('cursorLabel');
+      var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      var ringPos = { x: mouse.x, y: mouse.y };
+
+      window.addEventListener('mousemove', function (e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        gsap.set(dot, { x: mouse.x, y: mouse.y });
+      });
+
+      gsap.ticker.add(function () {
+        ringPos.x += (mouse.x - ringPos.x) * 0.18;
+        ringPos.y += (mouse.y - ringPos.y) * 0.18;
+        gsap.set(ring, { x: ringPos.x, y: ringPos.y });
+      });
+
+      document.querySelectorAll('[data-cursor]').forEach(function (el) {
+        el.addEventListener('mouseenter', function () {
+          document.body.classList.add('cursor-hover');
+          label.textContent = el.getAttribute('data-cursor') || 'EXPLORE';
+        });
+        el.addEventListener('mouseleave', function () {
+          document.body.classList.remove('cursor-hover');
+        });
+      });
+    }
+
+    /* ——— Lenis ——— */
+    function initLenis() {
+      if (reducedMotion || typeof Lenis === 'undefined') return null;
+
+      lenis = new Lenis({
+        duration: 1.15,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      return lenis;
+    }
+
+    /* ——— Nav ——— */
+    function initNav() {
+      var nav = document.getElementById('nav');
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+
+      gsap.to(nav, { y: 0, duration: 0.9, ease: 'power3.out', delay: 0.1 });
+
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('is-open');
+        toggle.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('is-open');
+          toggle.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    /* ——— Scroll Progress ——— */
+    function initProgress() {
+      var bar = document.getElementById('scrollProgress');
+      ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        onUpdate: function (self) {
+          bar.style.width = (self.progress * 100) + '%';
+        }
+      });
+    }
+
+    /* ——— Hero Portal ——— */
+    function initHero() {
+      var pin = document.getElementById('heroPin');
+      var portal = document.getElementById('heroPortal');
+      var img = document.getElementById('heroImg');
+      var shade = document.getElementById('heroShade');
+      var glass = document.getElementById('heroGlass');
+      var copy = document.getElementById('heroCopy');
+      var patterns = [
+        document.getElementById('heroPatternLeft'),
+        document.getElementById('heroPatternRight')
+      ];
+      var tl = null;
+      var st = null;
+
+      function patternOpacities() {
+        return patterns.map(function (el) {
+          el.style.removeProperty('opacity');
+          return parseFloat(window.getComputedStyle(el).opacity) || 0.2;
+        });
+      }
+
+      function measureStart() {
+        var pinH = pin.clientHeight || window.innerHeight;
+        var gap = 24;
+        var topPx = copy.offsetTop + copy.offsetHeight + gap;
+        return {
+          t: Math.min(80, Math.max(38, (topPx / pinH) * 100)),
+          side: window.innerWidth < 768 ? 5 : 15,
+          b: 4,
+          rad: 24
+        };
+      }
+
+      function applyClip(clip) {
+        portal.style.setProperty('--clip-t', clip.t + '%');
+        portal.style.setProperty('--clip-r', clip.side + '%');
+        portal.style.setProperty('--clip-b', clip.b + '%');
+        portal.style.setProperty('--clip-l', clip.side + '%');
+        portal.style.setProperty('--clip-radius', clip.rad + 'px');
+      }
+
+      function build() {
+        var progress = st ? st.progress : 0;
+        if (tl) tl.kill();
+        if (st) st.kill();
+
+        /* Reset to resting layout before measuring clip start */
+        gsap.set(copy, { opacity: 1, y: 0 });
+        patterns.forEach(function (el) { el.style.removeProperty('opacity'); });
+        gsap.set(img, { scale: 1.15 });
+        gsap.set(shade, { opacity: 0 });
+        gsap.set(glass, { xPercent: -50, y: 20, opacity: 0, pointerEvents: 'none' });
+
+        var start = measureStart();
+        var clip = { t: start.t, side: start.side, b: start.b, rad: start.rad };
+        var pOp = patternOpacities();
+        applyClip(clip);
+        patterns.forEach(function (el, i) { gsap.set(el, { opacity: pOp[i] }); });
+
+        tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom bottom',
+            pin: '#heroPin',
+            /* Boolean scrub = 1:1 with scroll (Lenis already eases). Numeric scrub lagged on reverse. */
+            scrub: true,
+            anticipatePin: 1
+          }
+        });
+        st = tl.scrollTrigger;
+
+        tl.fromTo(clip, {
+          t: start.t,
+          side: start.side,
+          b: start.b,
+          rad: start.rad
+        }, {
+          t: 0,
+          side: 0,
+          b: 0,
+          rad: 0,
+          ease: 'none',
+          duration: 1,
+          onUpdate: function () { applyClip(clip); }
+        }, 0)
+        .fromTo(img, { scale: 1.15 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+        /* Copy fades late → returns early on scroll-back */
+        .fromTo(copy, { opacity: 1, y: 0 }, { opacity: 0, y: -36, ease: 'none', duration: 0.32 }, 0.42)
+        .fromTo(patterns, { opacity: function (i) { return pOp[i]; } }, { opacity: 0, ease: 'none', duration: 0.22 }, 0.36)
+        .fromTo(shade, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.4 }, 0.48)
+        .fromTo(glass, {
+          opacity: 0,
+          y: 20,
+          pointerEvents: 'none'
+        }, {
+          opacity: 1,
+          y: 0,
+          pointerEvents: 'auto',
+          ease: 'none',
+          duration: 0.28
+        }, 0.62);
+
+        if (progress > 0.001) tl.progress(progress);
+      }
+
+      build();
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(build, 140);
+      });
+    }
+
+    /* ——— Service Desk ——— */
+    function initManifesto() {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.svcdesk-item'));
+      var images = Array.prototype.slice.call(document.querySelectorAll('.svcdesk-stage-img'));
+      var total = items.length;
+      var active = 0;
+      if (!total) return;
+
+      function setActive(index) {
+        active = ((index % total) + total) % total;
+        var item = items[active];
+
+        items.forEach(function (el, i) {
+          var on = i === active;
+          el.classList.toggle('is-active', on);
+          el.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        images.forEach(function (img, i) {
+          img.classList.toggle('is-active', i === active);
+        });
+
+        document.getElementById('svcdeskIndexLabel').textContent =
+          String(active + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+        document.getElementById('svcdeskTitle').textContent = item.getAttribute('data-title') || '';
+        document.getElementById('svcdeskCopy').textContent = item.getAttribute('data-copy') || '';
+
+        var pointsWrap = document.getElementById('svcdeskPoints');
+        pointsWrap.innerHTML = '';
+        (item.getAttribute('data-points') || '').split('|').forEach(function (pt) {
+          if (!pt) return;
+          var span = document.createElement('span');
+          span.innerHTML = pt;
+          pointsWrap.appendChild(span);
+        });
+
+        var cta = document.getElementById('svcdeskCta');
+        cta.textContent = item.getAttribute('data-cta') || 'Learn More';
+        var href = item.getAttribute('data-href') || '#working';
+        cta.href = href;
+        if (href.indexOf('http') === 0) {
+          cta.target = '_blank';
+          cta.rel = 'noopener noreferrer';
+        } else {
+          cta.removeAttribute('target');
+          cta.removeAttribute('rel');
+        }
+      }
+
+      items.forEach(function (el) {
+        el.addEventListener('click', function () {
+          setActive(parseInt(el.getAttribute('data-index'), 10));
+        });
+        el.addEventListener('mouseenter', function () {
+          if (window.matchMedia('(hover: hover) and (min-width: 961px)').matches) {
+            setActive(parseInt(el.getAttribute('data-index'), 10));
+          }
+        });
+      });
+
+      document.getElementById('svcdeskNext').addEventListener('click', function () {
+        setActive(active + 1);
+      });
+      document.getElementById('svcdeskPrev').addEventListener('click', function () {
+        setActive(active - 1);
+      });
+
+      gsap.from('.svcdesk-header', {
+        y: 36,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#services', start: 'top 75%' }
+      });
+      gsap.from('.svcdesk-item', {
+        x: -24,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.04,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#svcdeskIndex', start: 'top 85%' }
+      });
+      gsap.from('.svcdesk-stage', {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#svcdeskStage', start: 'top 80%' }
+      });
+    }
+
+
+    /* ——— Meridian Log ——— */
+    function initAtlas() {
+      var entries = Array.prototype.slice.call(document.querySelectorAll('.meridian-entry'));
+      var total = entries.length;
+      var active = 0;
+      if (!total) return;
+
+      function setActive(index) {
+        active = ((index % total) + total) % total;
+        entries.forEach(function (entry, i) {
+          var on = i === active;
+          entry.classList.toggle('is-active', on);
+          var row = entry.querySelector('.meridian-row');
+          if (row) row.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+      }
+
+      entries.forEach(function (entry) {
+        var row = entry.querySelector('.meridian-row');
+        if (!row) return;
+        row.addEventListener('click', function () {
+          setActive(parseInt(entry.getAttribute('data-index'), 10));
+        });
+      });
+
+      document.querySelectorAll('.meridian-next').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          setActive(active + 1);
+        });
+      });
+      document.querySelectorAll('.meridian-prev').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          setActive(active - 1);
+        });
+      });
+
+      window.addEventListener('keydown', function (e) {
+        var board = document.getElementById('meridian');
+        if (!board) return;
+        var rect = board.getBoundingClientRect();
+        if (rect.top >= window.innerHeight || rect.bottom <= 0) return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') setActive(active + 1);
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') setActive(active - 1);
+      });
+
+      gsap.from('.atlas-header', {
+        y: 36,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#destinations', start: 'top 75%' }
+      });
+      gsap.from('.meridian-entry', {
+        y: 28,
+        opacity: 0,
+        duration: 0.55,
+        stagger: 0.06,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#meridian', start: 'top 80%' }
+      });
+    }
+
+    /* ——— Dark mode + Phone ——— */
+    function initConcierge() {
+      ScrollTrigger.create({
+        trigger: '#destinations',
+        start: 'top 55%',
+        endTrigger: '#working',
+        end: 'top 55%',
+        onEnter: function () { document.body.classList.add('is-dark'); },
+        onLeave: function () { document.body.classList.remove('is-dark'); },
+        onEnterBack: function () { document.body.classList.add('is-dark'); },
+        onLeaveBack: function () { document.body.classList.remove('is-dark'); }
+      });
+
+      ScrollTrigger.create({
+        trigger: '#stories',
+        start: 'top 60%',
+        end: 'bottom 40%',
+        onEnter: function () { document.body.classList.add('is-dark'); },
+        onEnterBack: function () { document.body.classList.add('is-dark'); }
+      });
+
+      var phone = document.getElementById('phone');
+      if (window.matchMedia('(min-width: 901px)').matches) {
+        gsap.fromTo(phone,
+          { rotationY: -18, rotationX: 8, y: 40 },
+          {
+            rotationY: 12,
+            rotationX: -4,
+            y: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '#app',
+              start: 'top 70%',
+              end: 'bottom 30%',
+              scrub: 1
+            }
+          }
+        );
+      }
+
+      gsap.utils.toArray('.notif').forEach(function (card, i) {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#app',
+            start: 'top ' + (55 - i * 8) + '%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
+    }
+
+    /* ——— Stories ——— */
+    function initStories() {
+      gsap.from('.story-card', {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.18,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.story-stack',
+          start: 'top 75%'
+        }
+      });
+
+      document.querySelectorAll('.faq-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.faq-item');
+          var panel = item.querySelector('.faq-panel');
+          var isOpen = item.classList.contains('is-open');
+
+          document.querySelectorAll('.faq-item.is-open').forEach(function (openItem) {
+            if (openItem !== item) {
+              openItem.classList.remove('is-open');
+              openItem.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+              openItem.querySelector('.faq-panel').style.maxHeight = null;
+            }
+          });
+
+          if (isOpen) {
+            item.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            panel.style.maxHeight = null;
+          } else {
+            item.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+          }
+        });
+      });
+    }
+
+    /* ——— Quote drawer ——— */
+    function initQuote() {
+      var drawer = document.getElementById('drawer');
+      var backdrop = document.getElementById('drawerBackdrop');
+      var form = document.getElementById('quoteForm');
+      var success = document.getElementById('formSuccess');
+      var tripSelect = document.getElementById('qTripStyle');
+      var destSelect = document.getElementById('qDest');
+
+      function openDrawer() {
+        var activeTrip = document.querySelector('#tripStylePills .pill.is-active');
+        var activeDest = document.querySelector('#destPills .pill.is-active');
+        if (activeTrip) tripSelect.value = activeTrip.getAttribute('data-value');
+        if (activeDest) destSelect.value = activeDest.getAttribute('data-value');
+
+        drawer.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        drawer.setAttribute('aria-hidden', 'false');
+        if (lenis) lenis.stop();
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('is-open');
+        backdrop.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden', 'true');
+        if (lenis) lenis.start();
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('navQuoteBtn').addEventListener('click', openDrawer);
+      document.getElementById('openQuoteBtn').addEventListener('click', openDrawer);
+      document.getElementById('heroConsultBtn').addEventListener('click', openDrawer);
+      document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer();
+      });
+
+      function setupPills(rowId) {
+        var row = document.getElementById(rowId);
+        row.querySelectorAll('.pill').forEach(function (pill) {
+          pill.addEventListener('click', function () {
+            row.querySelectorAll('.pill').forEach(function (p) { p.classList.remove('is-active'); });
+            pill.classList.add('is-active');
+          });
+        });
+      }
+      setupPills('tripStylePills');
+      setupPills('destPills');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('qName').value.trim();
+        var email = document.getElementById('qEmail').value.trim();
+        if (!name || !email) {
+          form.reportValidity();
+          return;
+        }
+        form.style.display = 'none';
+        success.classList.add('is-visible');
+      });
+    }
+
+    /* ——— Footer kinetic ——— */
+    function initFooter() {
+      gsap.from('#footerKinetic', {
+        y: 120,
+        opacity: 0,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#footer',
+          start: 'top 70%',
+          end: 'bottom bottom',
+          scrub: 0.8
+        }
+      });
+    }
+
+    /* ——— Smooth anchor links ——— */
+    function initAnchors() {
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          var target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          if (lenis) lenis.scrollTo(target, { offset: -20 });
+          else target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+
+    /* ——— Boot ——— */
+    async function boot() {
+      await runPreloader();
+      initCursor();
+      initLenis();
+      initNav();
+      initProgress();
+      initHero();
+      initManifesto();
+      initAtlas();
+      initConcierge();
+      initStories();
+      initQuote();
+      initFooter();
+      initAnchors();
+      ScrollTrigger.refresh();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  </script>
+
+
+</body>
+</html>
