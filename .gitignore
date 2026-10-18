@@ -6,3 +6,4 @@ Thumbs.db
 !.env.example
 node_modules/
 *.log
+.env*
